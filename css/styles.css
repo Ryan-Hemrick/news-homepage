@@ -254,6 +254,18 @@ header .container {
   .primary-nav[data-visible='true'] a {
     color: var(--clr-dark-blue);
   }
+
+  .primary-nav::before {
+    content: "";
+    background-color: var(--clr-dark-blue);
+    opacity: 0.5;
+    position: fixed;
+    height: 100%;
+    width: 30%;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);  
+  }
 }
 
 @media (min-width: 62em) {
@@ -289,6 +301,9 @@ Featured Article Section Styles
   }
   .featured__img {
     margin-bottom: 1.75rem;
+  }
+  .featured__info__title {
+    margin-bottom: 0;
   }
 }
 
