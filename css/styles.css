@@ -1,0 +1,345 @@
+/* =====================
+CSS Variables
+======================== */
+
+:root {
+  --clr-dark-blue: hsla(240, 100%, 5%, 1);
+  --clr-yellow: hsla(35, 78%, 62%, 1);
+  --clr-orange: hsla(5, 85%, 63%, 1);
+  --clr-neutral-400: hsla(237, 13%, 42%, 1);
+  --clr-neutral-200: hsla(236, 8%, 79%, 1);
+  --clr-white: hsla(36, 100%, 99%, 1);
+
+  --ff-Inter: 'Inter', Helvetica, Arial, sans-serif;
+}
+
+
+/* =====================
+Font Styles
+======================== */
+
+h1,h2 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--clr-dark-blue); 
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--clr-yellow);
+}
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-white);
+}
+h4 {
+  font-size: 1.125rem;
+  color: var(--clr-dark-blue);
+  font-weight: 800;
+}
+
+p {
+  font-size: 0.938rem;
+  color: var(--clr-neutral-400);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+p.new__article__blurb {
+  color: var(--clr-neutral-200);
+}
+
+p.trending__article__info__num {
+  font-size: 2rem;
+  color: var(--clr-neutral-200);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.primary-nav li {
+  font-size: 0.938rem;
+}
+
+@media (min-width: 48em) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+
+/* =====================
+Global Layout / Positioning
+======================== */
+
+body {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  font-family: var(--ff-Inter);
+  background-color: var(--clr-white);
+  
+  overflow-x: hidden;
+}
+
+#featured-articles {
+  grid-area: featured;
+}
+#new-articles {
+  grid-area: new;
+}
+#trending-articles {
+  grid-area: trending;
+}
+
+main .container {
+  display: grid;
+  grid-template-areas: 
+    "featured"
+    "new"
+    "trending";
+  gap: 3.75rem; 
+}
+
+main {
+  padding-bottom: 4.625rem;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 62em) {
+  main .container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "featured featured new"
+    "featured featured new"
+    "trending trending trending"; 
+    gap: 4.375rem 2rem; 
+  }
+  .container {
+    /* actual content width of 1110px */
+    max-width: 1142px;
+  }
+}
+
+
+/* =====================
+Button and Link Styles
+======================== */
+
+.btn-primary {
+  background-color: var(--clr-orange);
+  font-size: 0.875rem;
+  color: var(--clr-white);
+  font-weight: 700;
+  padding: 1rem;
+  letter-spacing: 0.273rem;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  width: 184px;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--clr-dark-blue);
+}
+
+a {
+  text-decoration: none;
+}
+.primary-nav a {
+  transition: color 200ms ease-in-out;
+  color: var(--clr-neutral-400);
+}
+.primary-nav a:hover,
+.primary-nav a:focus {
+  color: var(--clr-orange);
+}
+
+.article__link > * {
+  transition: color 200ms ease-in-out;
+}
+.new__article .article__link:hover > *,
+.new__article .article__link:focus > * {
+  color: var(--clr-yellow);
+}
+.trending__article .article__link:hover > *,
+.trending__article .article__link:focus > * {
+  color: var(--clr-orange);
+}
+
+
+/* =====================
+Header Styles
+======================== */
+
+header {
+  padding: 1.5rem 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary-nav ul {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* Mobile navigation styles */
+@media (max-width: 48em) {
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    top: 1.625rem;
+    right: 1.25rem;
+    width: 1.875rem;
+    aspect-ratio: 1;
+    z-index: 9999;
+    background: url('../images/icon-menu.svg') no-repeat;
+    background-position: center;
+    border: none;
+  }
+  
+  /* When the mobile nav is visible, change the button to an 'X' */
+  .mobile-nav-toggle[aria-expanded='true'] {
+    background-image: url('../images/icon-menu-close.svg');
+  }
+
+  .primary-nav {
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    inset: 0 0 0 30%;
+    background-color: hsla(0, 0%, 100%, 1);
+    padding: min(20vh, 8rem) 2rem;
+    z-index: 1000;
+
+    transform: translateX(100%);
+    transition: transform 250ms ease-in-out;
+  }
+
+  .primary-nav ul {
+    flex-direction: column;
+    gap: 1.875rem;
+  }
+  .primary-nav li {
+    font-size: 1.125rem;
+  }
+
+  /* Animate the primary-nav into view when attribute is set to true (opened) */
+  .primary-nav[data-visible='true'] {
+    transform: translateX(0%);
+  }
+  .primary-nav[data-visible='true'] a {
+    color: var(--clr-dark-blue);
+  }
+}
+
+@media (min-width: 62em) {
+  header {
+    padding: 4.5rem 0 3.5rem 0;
+  }
+  .brand {
+    width: 64px;
+    height: 40px;
+  }
+}
+
+
+/* =====================
+Featured Article Section Styles
+======================== */
+
+.featured__img {
+  margin-bottom: 1.375rem;
+}
+.featured__info__title {
+  margin-bottom: 0.75rem;
+}
+.featured__info__desc p {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 48em) {
+  .featured__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: min(5.25rem, 8%);
+  }
+  .featured__img {
+    margin-bottom: 1.75rem;
+  }
+}
+
+
+/* =====================
+New Articles Section Styles
+======================== */
+
+#new-articles {
+  background-color: var(--clr-dark-blue);
+  padding: 1.5rem 1.25rem;
+}
+
+#new-articles .new__article {
+  padding-top: 1.625rem;
+}
+#new-articles .new__article:not(:last-child) {
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid hsla(236, 13%, 42%, 1);
+}
+
+.new__article__title {
+  margin-bottom: 0.625rem;
+}
+
+
+/* =====================
+Trending Articles Section Styles
+======================== */
+#trending-articles {
+  display: grid;
+  gap: 1.875rem 3rem;
+}
+
+.trending__article {
+  display: grid;
+  grid-template-columns: 100px auto; 
+  align-items: center; 
+  gap: 1.5rem;
+}
+
+.trending__article__info__num {
+  margin-bottom: 0.875rem;
+}
+.trending__article__info__title {
+  margin-bottom: 0.625rem;
+}
+
+@media (min-width: 62em) {
+  #trending-articles {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem 3rem;
+  }
+}
