@@ -109,7 +109,7 @@ main .container {
 }
 
 main {
-  padding-bottom: 4.625rem;
+  padding-bottom: 4.5rem;
 }
 
 .container {
@@ -314,10 +314,17 @@ New Articles Section Styles
   margin-bottom: 0.625rem;
 }
 
+@media (min-width: 62em) {
+  #new-articles {
+    align-self: start;
+  }
+}
+
 
 /* =====================
 Trending Articles Section Styles
 ======================== */
+
 #trending-articles {
   display: grid;
   gap: 1.875rem 3rem;
@@ -328,6 +335,10 @@ Trending Articles Section Styles
   grid-template-columns: 100px auto; 
   align-items: center; 
   gap: 1.5rem;
+}
+
+.trending__article__img {
+  align-self: start;
 }
 
 .trending__article__info__num {
